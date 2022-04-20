@@ -132,6 +132,11 @@ To address the network delays or service unavailability, we could use a library 
 
 We display Name and surname next to user avatar and email at the top of the website in navigation layout.
 
+9. A new div is created and filled with existing item creation view.
+The next step would be modification of the view and save the data with existing controller (or create a new one).
+Let's leave it for now.
+
+
 
 		
 

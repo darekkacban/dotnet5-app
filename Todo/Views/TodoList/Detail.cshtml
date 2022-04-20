@@ -9,12 +9,14 @@
 
 <h2>@ViewData["Title"]</h2>
 
+
 <div class="col-md-6">
+        @Html.HiddenFor(m => m.TodoListId)
+
+        <div id="modal" class="modal-dialog"></div>
 
         <div class="navigation">
-            <a asp-action="Create" asp-controller="TodoItem" asp-route-todoListId="@Model.TodoListId">
-                <strong>Add New Item</strong>
-            </a>
+            <button id="createNewItem">Add New Item</button>
         </div>
         <div class="navigation">
             <input id="hideDoneCheckbox" type="checkbox" name="hideDoneCheckbox">

@@ -35,3 +35,14 @@ $('#orderByRankDescending').click(function () {
     $('.toDoRow').remove();
     $('.list-group').append(items);
 });
+
+$('#createNewItem').click(function () {
+    let listId = $('#TodoListId').val();
+    let url = "/TodoItem/Create?todoListId=" + listId;
+
+    $.get(url).done(function (data) {
+        $('#modal').html(data);
+    });
+});
+
+
