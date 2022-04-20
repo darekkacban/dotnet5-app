@@ -10,3 +10,6 @@ OrderBy() extension method. We sort items by enumeration type, which is represen
 - Renamed class: TodoListDetailViewModelFactory to be compliant with Upper camel case format.
 - Created a unit test TodoListDetailViewmodelFactoryTest.ShouldSortItemsByImportance(), which tests if the element of High importance is always the first element.
 - Unit test pass, so we're safe in case of the future refactorings.
+3. Mapping issue cause a test fail.
+I found a bug in TodoItemEditFields class constructor, where Importance was always set to Importance.Medium.
+It The property should be assigned a constructor parameter, and this is a solution: Importance = importance; Test passed and are green now.
