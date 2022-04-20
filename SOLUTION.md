@@ -13,3 +13,12 @@ OrderBy() extension method. We sort items by enumeration type, which is represen
 3. Mapping issue cause a test fail.
 I found a bug in TodoItemEditFields class constructor, where Importance was always set to Importance.Medium.
 It The property should be assigned a constructor parameter, and this is a solution: Importance = importance; Test passed and are green now.
+4. Display friendly name instead of a property name.
+I solved this problem by adding [DisplayAttribute] in 2 view model classes:
+TodoItemEditFields - now the field is called more user friendly in edit fiew
+TodoItemCreateFields - I did similar change in creating view. A small bonus to this task:)
+
+The shape of attribute is as follows:
+[Display(Name = "Responsible Party")]
+
+5. 
