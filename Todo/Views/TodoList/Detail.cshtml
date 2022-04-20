@@ -11,18 +11,25 @@
 
 <div class="col-md-6">
 
-    <ul class="list-group">
-
-        <li class="list-group-item">
+        <div class="navigation">
             <a asp-action="Create" asp-controller="TodoItem" asp-route-todoListId="@Model.TodoListId">
                 <strong>Add New Item</strong>
             </a>
-        </li>
-        <li class="list-group-item">
+        </div>
+        <div class="navigation">
             <input id="hideDoneCheckbox" type="checkbox" name="hideDoneCheckbox">
             <label for="hideDoneCheckbox">Hide done items</label><br>
-        </li>
+        </div>
 
+        <div class="navigation">
+            <button id="orderByRankAscending">Order by rank ascending</button>
+        </div>
+
+        <div class="navigation">
+            <button id="orderByRankDescending">Order by rank descending</button>
+        </div>
+
+    <ul class="list-group">
         @foreach (var item in Model.Items)
         {
             string contextualClass;
@@ -41,7 +48,7 @@
 
             var isDoneClass = @item.IsDone ? "isDone" : "";
 
-            <li class="list-group-item @contextualClass @isDoneClass">
+            <li class="toDoRow list-group-item @contextualClass @isDoneClass" data-rank=@item.Rank>
                 <div class="row">
                     <div class="col-md-8">
                         <a asp-action="Edit" asp-controller="TodoItem" asp-route-todoItemId="@item.TodoItemId">

@@ -21,15 +21,15 @@ namespace Todo.Tests
             {
                 Items = new List<TodoItem>()
                 {
-                    new TodoItem(1, "1", "item 1", Importance.Medium)
+                    new TodoItem(1, "1", "item 1", Importance.Medium, 1)
                     {
                         ResponsibleParty = user
                     },
-                    new TodoItem(2, "1", "item 2", Importance.Low)
+                    new TodoItem(2, "1", "item 2", Importance.Low, 1)
                     {
                         ResponsibleParty = user
                     },
-                    new TodoItem(3, "1", "item 3", Importance.High)
+                    new TodoItem(3, "1", "item 3", Importance.High, 1)
                     {
                         ResponsibleParty = user
                     }

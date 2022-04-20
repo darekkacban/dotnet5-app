@@ -53,4 +53,51 @@ I extended the predicate inside Where() LINQ method.
 Where(tl => tl.Owner.Id == userId || tl.Items.Any(item => item.ResponsiblePartyId == userId));
 I tested it for 2 users, and the app shows only required lists.
 
+7. New Rank property
+I added the integer Rank property and created a new migration with the command:
+dotnet ef migrations add AddRankToTheTodoItem --project=Todo
+
+I applied the changes to the DB with a command:
+dotnet ef database update --project=Todo
+
+Sorting on the details page requires a new set of HTML controls:
+<li class="list-group-item">
+	<input id="orderByRankCheckbox" type="checkbox" name="orderByRankCheckbox">
+	<label for="orderByRankCheckbox">Order items by rank</label><br>
+</li>
+
+Then javascript part does the work:
+
+Method responsible for sorting (2 options: ascending and descending):
+
+function sortTodoItems(descending) {
+    return $('.toDoRow').toArray().sort(function (a, b) {
+        var rank1 = $(a).data("rank"),
+            rank2 = $(b).data("rank");
+
+        if (descending) {
+            return rank2 - rank1;
+        }
+
+        return rank1 - rank2;
+    });
+}
+
+And the above method call as a reaction to buttons click:
+$('#orderByRankAscending').click(function () {
+    var items = sortTodoItems();
+    $('.toDoRow').remove();
+    $('.list-group').append(items);
+});
+
+$('#orderByRankDescending').click(function () {
+    var items = sortTodoItems(true);
+    $('.toDoRow').remove();
+    $('.list-group').append(items);
+});
+
+Sorting required 2 new buttons:
+<button id="orderByRankAscending">Order by rank ascending</button>
+<button id="orderByRankDescending">Order by rank descending</button>
+as well as data ttribiute in each data row: data-rank=@item.Rank
 
