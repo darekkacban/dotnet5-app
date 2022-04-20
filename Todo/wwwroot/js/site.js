@@ -45,4 +45,18 @@ $('#createNewItem').click(function () {
     });
 });
 
+$('.rankTextbox').change(function () {
+
+    let itemId = $(this).data('item-id');
+    let rankValue = $(this).val();
+
+    let url = "/TodoItem/UpdateRank";
+
+    $.post(url, { itemId: itemId, rankValue: rankValue },
+        function (response) {
+            console.log(response);
+        });
+});
+
+
 

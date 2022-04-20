@@ -69,5 +69,15 @@ namespace Todo.Controllers
         {
             return RedirectToAction("Detail", "TodoList", new {todoListId = fieldsTodoListId});
         }
+
+        [HttpPost]
+        public void UpdateRank(int itemId, int rankValue)
+        {
+            var todoItem = dbContext.SingleTodoItem(itemId);
+            todoItem.Rank = rankValue;
+
+            dbContext.Update(todoItem);
+            dbContext.SaveChanges();
+        }
     }
 }

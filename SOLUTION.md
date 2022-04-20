@@ -136,6 +136,26 @@ We display Name and surname next to user avatar and email at the top of the webs
 The next step would be modification of the view and save the data with existing controller (or create a new one).
 Let's leave it for now.
 
+10. New API endpoint dedicated to Rank update is added. 
+We ise it like this from JS:
+$('.rankTextbox').change(function () {
+
+    let itemId = $(this).data('item-id');
+    let rankValue = $(this).val();
+
+    let url = "/TodoItem/UpdateRank";
+
+    $.post(url, { itemId: itemId, rankValue: rankValue },
+        function (response) {
+            console.log(response);
+        });
+});
+
+Also a new bootstrap column was added to show the rank on the list:
+<div class="col-md-4">
+	<input class="rankTextbox" data-item-id="@item.TodoItemId" type="text" value="@item.Rank"/>
+</div>
+
 
 
 		
