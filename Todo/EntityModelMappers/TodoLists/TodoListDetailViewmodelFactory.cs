@@ -5,11 +5,13 @@ using Todo.Models.TodoLists;
 
 namespace Todo.EntityModelMappers.TodoLists
 {
-    public static class TodoListDetailViewmodelFactory
+    public static class TodoListDetailViewModelFactory
     {
         public static TodoListDetailViewmodel Create(TodoList todoList)
         {
-            var items = todoList.Items.Select(TodoItemSummaryViewmodelFactory.Create).ToList();
+            var items = todoList.Items
+                .OrderBy(i => i.Importance)
+                .Select(TodoItemSummaryViewmodelFactory.Create).ToList();
             return new TodoListDetailViewmodel(todoList.TodoListId, todoList.Title, items);
         }
     }
