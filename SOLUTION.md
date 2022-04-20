@@ -21,4 +21,30 @@ TodoItemCreateFields - I did similar change in creating view. A small bonus to t
 The shape of attribute is as follows:
 [Display(Name = "Responsible Party")]
 
-5. 
+5. Checkbox to hide done items. 
+I added a checkbox with a label: "Hide done items".
+
+First I add a class in a razor view:
+var isDoneClass = @item.IsDone ? "isDone" : "";
+
+And then I add a class at the end of a class list for a row:
+<li class="list-group-item @contextualClass @isDoneClass">
+
+In my opinion this solution is not the best, because we end up with multiple spaces in a class attribute of <li> HTML element.
+Anyway, the code which I added is compliand with the convention. Thanks to this a code looks like it was written by one person.
+If I had more time, I would suggest to improve this approach to eliminate spaces. Maybe combining both classes into one variable,
+or even more complex solution. I would avoid hidden fields, and use classes instead like we do now.
+
+Javascript is contained in a global file site.js
+$('#hideDoneCheckbox').change(function () {
+    if (this.checked) {
+        $(".isDone").hide();
+    } else {
+        $(".isDone").show();
+    }
+});
+
+We use simple jQuery handlers for a checkbox. All the code is in 1 file. 
+For more complex apps we can create 1 javascript file per view.
+
+
