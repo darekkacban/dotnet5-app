@@ -47,4 +47,10 @@ $('#hideDoneCheckbox').change(function () {
 We use simple jQuery handlers for a checkbox. All the code is in 1 file. 
 For more complex apps we can create 1 javascript file per view.
 
+6. Show also other user lists if at least item is assigned to me.
+
+I extended the predicate inside Where() LINQ method.
+Where(tl => tl.Owner.Id == userId || tl.Items.Any(item => item.ResponsiblePartyId == userId));
+I tested it for 2 users, and the app shows only required lists.
+
 
