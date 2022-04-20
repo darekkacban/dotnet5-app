@@ -101,3 +101,37 @@ Sorting required 2 new buttons:
 <button id="orderByRankDescending">Order by rank descending</button>
 as well as data ttribiute in each data row: data-rank=@item.Rank
 
+8. Gravatar. Ddidtional data like name may be downloaded with public API.
+C# model was generated with the website:
+https://json2csharp.com/
+To see the model, check GravatarContracts folder.
+
+The most important method is located in Gravatar class:
+
+public static string GetUserName(string emailAddress)
+{
+	var hash = GetHash(emailAddress);
+	var url = $"https://en.gravatar.com/";
+
+	try
+	{
+		var client = new RestClient(url);
+		var request = new RestRequest($"{hash}.json");
+		var response = client.GetAsync(request).Result;
+		Root root = JsonConvert.DeserializeObject<Root>(response.Content);
+
+		return root.entry.First().name.formatted;
+	} catch (Exception e)
+	{
+		return "-"; 
+	}
+}
+
+All potential errors are handled by returning defailt value "-".
+To address the network delays or service unavailability, we could use a library like Polly.
+
+We display Name and surname next to user avatar and email at the top of the website in navigation layout.
+
+
+		
+
